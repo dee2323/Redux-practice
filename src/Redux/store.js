@@ -1,12 +1,11 @@
-import { createStore } from 'redux'
-const counterReducer = (state = { counter: 0, showCounter: true }, action) => {
-    const { type } = action;
-    switch (type) {
-        case 'increment': return { ...state, counter: state.counter + 1 }
-        case 'decrement': return { ...state, counter: state.counter - 1 }
-        case 'incrementBy5': return { ...state, counter: state.counter + action.amount }
-        case 'hideCounter': return { ...state, showCounter: !state.showCounter }
-        default: return state;
+import { configureStore } from '@reduxjs/toolkit'
+import { counter } from './slices/counterSlice'
+import { auth } from './slices/authSlice';
+
+export const store = configureStore({
+    reducer: {
+        counter,
+        auth,
+
     }
-}
-export const store = createStore(counterReducer)
+})
